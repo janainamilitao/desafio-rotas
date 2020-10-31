@@ -28,8 +28,6 @@ public class Edge {
     @NotNull(message = "distance: required field")
     private Integer distance;
 
-    @ManyToOne
-    private Graph graph;
 
     public  Edge(){}
 

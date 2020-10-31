@@ -9,16 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class GraphService {
 
     @Autowired
     private GraphRepository graphRepository;
-
-    @Autowired
-    private EdgeRepository edgeRepository;
 
     public Graph  saveGraph(List<EdgeRequest> edgeRequestList){
 
@@ -29,10 +25,12 @@ public class GraphService {
     private Graph createGraph(List<EdgeRequest> edgeRequestList) {
 
         Graph graph = new Graph();
+
         graph.setEdges(new ArrayList<>());
         edgeRequestList.stream().forEach( e-> {
             Edge edge = e.convertObject(e);
             graph.getEdges().add(edge);
+
         });
 
         return graph;

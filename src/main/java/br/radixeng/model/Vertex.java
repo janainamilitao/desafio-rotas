@@ -21,9 +21,6 @@ public class Vertex {
 
     private String name;
 
-    @ManyToOne
-    private Graph graph;
-
     public Vertex(){
 
     }

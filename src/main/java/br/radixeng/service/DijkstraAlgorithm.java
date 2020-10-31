@@ -7,7 +7,7 @@ import br.radixeng.model.Vertex;
 import java.util.*;
 
 public class DijkstraAlgorithm {
-    private final List<Vertex> nodes;
+
     private final List<Edge> edges;
     private Set<Vertex> settledNodes;
     private Set<Vertex> unSettledNodes;
@@ -16,12 +16,11 @@ public class DijkstraAlgorithm {
 
     public DijkstraAlgorithm(Graph graph) {
         // create a copy of the array so that we can operate on this array
-        this.nodes = new ArrayList<Vertex>(graph.getVertexes());
         this.edges = new ArrayList<Edge>(graph.getEdges());
     }
 
     public void execute(Vertex source) {
-        settledNodes = new HashSet<Vertex>();
+         settledNodes = new HashSet<Vertex>();
         unSettledNodes = new HashSet<Vertex>();
         distance = new HashMap<Vertex, Integer>();
         predecessors = new HashMap<Vertex, Vertex>();
@@ -72,7 +71,7 @@ public class DijkstraAlgorithm {
     }
 
     private List<Vertex> getNeighbors(Vertex node) {
-        List<Vertex> neighbors = new ArrayList<Vertex>();
+        List<Vertex> neighbors = new ArrayList<>();
         for (Edge edge : edges) {
             if (edge.getSource().equals(node)
                     && !isSettled(edge.getTarget())) {
