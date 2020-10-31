@@ -1,9 +1,7 @@
 package br.radixeng.service;
 
 import br.radixeng.exception.GraphNotFoundException;
-import br.radixeng.model.Edge;
-import br.radixeng.model.Graph;
-import br.radixeng.model.Route;
+import br.radixeng.model.*;
 import br.radixeng.request.EdgeRequest;
 import br.radixeng.repository.EdgeRepository;
 import br.radixeng.repository.GraphRepository;
@@ -56,38 +54,26 @@ public class GraphService {
     public List<Route> findRoutes(Long graphId, String town1, String town2, int maxStops) throws GraphNotFoundException {
 
         Graph graph = recoverGraph(graphId);
-       List<Edge> edges =   graph.getEdges().stream().filter( e -> e.getSource().getName().equals(town1)).collect(Collectors.toList());
-       edges.
 
-
-        GraphOperations graphOperations = new GraphOperations(graph);
-        graphOperations.execute(town1, town2, maxStops);
-
-
-       // List<List<String>> path = graphOperations.montarPath(town1, town2);
         List<Route> routes = new ArrayList<>();
-
-//        for(Edge e : graph.getEdges()){
-//            Route  route = new Route();
-//            if(e.getSource().equals(town1)){
-//
-//
-//                route.setStops(path.size() - 1);
-//                route.setRoute("");
-//                path.stream().forEach( p -> route.setRoute(route.getRoute().concat(p.getName())));
-//                routes.add(route);
-//            }
-//        }
-
-
-
 
         return routes;
     }
 
-//    private void addRoute(List<Route> routes, Vertex vertex, int stops){
-//        Route  route = new Route();
-//    }
 
+    public RouteMinimalDTO findMinimalRoute(Long graphId, String town1, String town2) throws GraphNotFoundException {
+
+        Graph graph = recoverGraph(graphId);
+        DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(graph);
+        dijkstraAlgorithm.execute(new Vertex(town1));
+        LinkedList<Vertex>  path = dijkstraAlgorithm.getPath( new Vertex(town2));
+        int distanceTotal = dijkstraAlgorithm.getDistanceTotal(path);
+
+        RouteMinimalDTO route = new RouteMinimalDTO();
+        route.setDistance(distanceTotal);
+        route.setPath(path);
+
+        return route;
+    }
 
 }

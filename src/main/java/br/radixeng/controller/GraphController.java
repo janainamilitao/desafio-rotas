@@ -3,6 +3,7 @@ package br.radixeng.controller;
 import br.radixeng.exception.GraphNotFoundException;
 import br.radixeng.model.Graph;
 import br.radixeng.model.Route;
+import br.radixeng.model.RouteMinimalDTO;
 import br.radixeng.request.EdgeRequest;
 import br.radixeng.service.GraphService;
 import io.swagger.annotations.Api;
@@ -36,13 +37,21 @@ public class GraphController {
         return graphService.recoverGraph(graphId);
     }
 
-    @ApiOperation(value = "Find Routes")
+//    @ApiOperation(value = "Find Routes")
+//    @GetMapping(value = "/routes/{graphId}/from/{town1}/to/{town2}")
+//    public List<Route> findRoutes(@PathVariable("graphId") Long graphId,
+//                              @PathVariable("town1") String town1,
+//                              @PathVariable("town2") String town2,
+//                              @RequestParam(value = "maxStops", required = false) int maxStops) throws GraphNotFoundException {
+//        return graphService.findRoutes(graphId, town1, town2, maxStops);
+//    }
+
+    @ApiOperation(value = "Find Route Minimal")
     @GetMapping(value = "/routes/{graphId}/from/{town1}/to/{town2}")
-    public List<Route> findRoutes(@PathVariable("graphId") Long graphId,
-                              @PathVariable("town1") String town1,
-                              @PathVariable("town2") String town2,
-                              @RequestParam(value = "maxStops") int maxStops) throws GraphNotFoundException {
-        return graphService.findRoutes(graphId, town1, town2, maxStops);
+    public RouteMinimalDTO findRouteMinimal(@PathVariable("graphId") Long graphId,
+                                            @PathVariable("town1") String town1,
+                                            @PathVariable("town2") String town2) throws GraphNotFoundException {
+        return graphService.findMinimalRoute(graphId, town1, town2);
     }
 
 }
