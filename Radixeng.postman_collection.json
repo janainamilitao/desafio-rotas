@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "ff4201bc-b214-4490-b06b-f3ab4b124d58",
+		"name": "Radixeng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Graph",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n  [\n { \n      \"source\": \"A\", \"target\": \"B\", \"distance\":5\n    },\n    { \n      \"source\": \"B\", \"target\": \"C\", \"distance\":4\n    },\n    { \n      \"source\": \"C\", \"target\": \"D\", \"distance\":8\n    },\n    { \n      \"source\": \"D\", \"target\": \"C\", \"distance\":8\n    },\n    { \n      \"source\": \"D\", \"target\": \"E\", \"distance\":6\n    },\n    { \n      \"source\": \"A\", \"target\": \"D\", \"distance\":5\n    },\n    { \n      \"source\": \"C\", \"target\": \"E\", \"distance\":2\n    },\n    { \n      \"source\": \"E\", \"target\": \"B\", \"distance\":3\n    },\n    { \n      \"source\": \"A\", \"target\": \"E\", \"distance\":7\n    }\n\n\n  ]\n\n"
+				},
+				"url": {
+					"raw": "localhost:8080/graph",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graph"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recover Graph",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/graph/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graph",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Routes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/routes/1/from/C/to/C?maxStops=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"routes",
+						"1",
+						"from",
+						"C",
+						"to",
+						"C"
+					],
+					"query": [
+						{
+							"key": "maxStops",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Minimal Route",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/distance/1/from/A/to/C",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"distance",
+						"1",
+						"from",
+						"A",
+						"to",
+						"C"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

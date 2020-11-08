@@ -7,8 +7,10 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+/**
+ * @author Janaina Militão
+ */
+@Getter @Setter
 public class EdgeRequest {
 
     @NotNull(message = "source: required field")
@@ -23,6 +25,12 @@ public class EdgeRequest {
     public  EdgeRequest (){
 
     }
+    public  EdgeRequest (String source, String target, Integer distance){
+        this.source = source;
+        this.target = target;
+        this.distance = distance;
+    }
+
 
     public Edge convertObject(EdgeRequest edgeRequest) {
         return new Edge(new Vertex(edgeRequest.getSource()), new Vertex(edgeRequest.getTarget()), edgeRequest.getDistance());

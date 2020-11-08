@@ -1,22 +1,21 @@
 package br.radixeng.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * 
- * @author janaina
- *
+/** Class for objects of type Vertex, where they will be contained, values ​​and methods for it.
+ *  @author Janaina MIlitão
  */
-
 @Entity
 @Getter @Setter
 public class Vertex {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
 
     private String name;

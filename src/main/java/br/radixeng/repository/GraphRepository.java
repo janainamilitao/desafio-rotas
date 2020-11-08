@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+/**
+ * @author Janaina Militão
+ */
 public interface GraphRepository extends JpaRepository<Graph, Long> {
     Optional<Graph> findById(Long idGraph);
 }
